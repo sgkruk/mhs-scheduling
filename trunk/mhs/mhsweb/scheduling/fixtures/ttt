@@ -1,0 +1,493 @@
+[
+ {
+	 "pk": 1, 
+		 "model": "scheduling.employee", 
+		 "fields": {
+		 "first_name": "Theresa", 
+			 "last_name": "", 
+			 "max_hours_per_week": 45, 
+			 "has_key": true, 
+			 "has_license": true, 
+			 "nickname": "theresa"
+			 }
+ }, 
+ {
+	 "pk": 2, 
+		 "model": "scheduling.employee", 
+		 "fields": {
+		 "first_name": "Holly", 
+			 "last_name": "", 
+			 "max_hours_per_week": 31, 
+			 "has_key": false, 
+			 "has_license": true, 
+			 "nickname": "holly"
+			 }
+ }, 
+ {
+	 "pk": 3, 
+		 "model": "scheduling.employee", 
+		 "fields": {
+		 "first_name": "Heidi", 
+			 "last_name": "", 
+			 "max_hours_per_week": 45, 
+			 "has_key": false, 
+			 "has_license": false, 
+			 "nickname": "heidi"
+			 }
+ }, 
+ {
+	 "pk": 4, 
+		 "model": "scheduling.employee", 
+		 "fields": {
+		 "first_name": "Kim", 
+			 "last_name": "", 
+			 "max_hours_per_week": 45, 
+			 "has_key": true, 
+			 "has_license": false, 
+			 "nickname": "kim"
+			 }
+ }, 
+ {
+	 "pk": 5, 
+		 "model": "scheduling.employee", 
+		 "fields": {
+		 "first_name": "Eva", 
+			 "last_name": "", 
+			 "max_hours_per_week": 45, 
+			 "has_key": true, 
+			 "has_license": false, 
+			 "nickname": "eva"
+			 }
+ }, 
+ {
+	 "pk": 6, 
+		 "model": "scheduling.employee", 
+		 "fields": {
+		 "first_name": "Kristin", 
+			 "last_name": "", 
+			 "max_hours_per_week": 45, 
+			 "has_key": true, 
+			 "has_license": true, 
+			 "nickname": "kristin"
+			 }
+ }, 
+ {
+	 "pk": 7, 
+		 "model": "scheduling.employee", 
+		 "fields": {
+		 "first_name": "Chris", 
+			 "last_name": "", 
+			 "max_hours_per_week": 45, 
+			 "has_key": false, 
+			 "has_license": true, 
+			 "nickname": "chris"
+			 }
+ }, 
+
+
+ {
+	 "pk": 1, 
+		 "model": "scheduling.period", 
+		 "fields": {
+		 "starting_date": "2008-09-28", 
+			 "ending_date": "2008-11-02", 
+			 "name": "October"
+			 }
+ }, 
+ {
+	 "pk": 1, 
+		 "model": "scheduling.dayheader", 
+		 "fields": {
+		 "date": "2008-09-28", 
+			 "opening_time": null, 
+			 "veterinarian": "N", 
+			 "period": 1, 
+			 "closing_time": null
+			 }
+ }, 
+ {
+	 "pk":2,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-09-29",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":3,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-09-30",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "F",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":4,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-01",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":5,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-02",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":6,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-03",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":7,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-04",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "17:00:00"
+			 }
+ },
+ {
+	 "pk":8,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-05",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "none",
+			 "period" : 1,
+			 "closing_time" : "12:00:00"
+			 }
+ },
+ {
+	 "pk":9,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-06",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":10,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-07",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":11,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-08",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":12,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-09",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":13,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-10",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":14,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-11",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "17:00:00"
+			 }
+ },
+ {
+	 "pk":15,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-12",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "none",
+			 "period" : 1,
+			 "closing_time" : "12:00:00"
+			 }
+ },
+ {
+	 "pk":16,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-13",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "18:00:00"
+			 }
+ },
+ {
+	 "pk":17,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-14",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":18,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-15",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":19,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-16",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":20,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-17",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":21,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-18",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "17:00:00"
+			 }
+ },
+ {
+	 "pk":22,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-19",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "none",
+			 "period" : 1,
+			 "closing_time" : "12:00:00"
+			 }
+ },
+ {
+	 "pk":23,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-20",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":24,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-21",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":25,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-22",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":26,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-23",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":27,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-24",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":28,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-25",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "17:00:00"
+			 }
+ },
+ {
+	 "pk":29,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-26",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "none",
+			 "period" : 1,
+			 "closing_time" : "12:00:00"
+			 }
+ },
+ {
+	 "pk":30,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-27",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "19:00:00"
+			 }
+ },
+ {
+	 "pk":31,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-28",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":32,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-29",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":33,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-30",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":34,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-10-31",
+			 "opening_time" : "07:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "20:00:00"
+			 }
+ },
+ {
+	 "pk":35,
+		 "model": "scheduling.dayheader",
+		 "fields" : {
+		 "date": "2008-11-01",
+			 "opening_time" : "08:00:00",
+			 "veterinarian": "S",
+			 "period" : 1,
+			 "closing_time" : "17:00:00"
+			 }
+ },
+  {
+    "pk": 1, 
+    "model": "scheduling.daydetail", 
+    "fields": {
+      "employee": 1, 
+      "header": 1, 
+      "ending_time": null, 
+      "starting_time": null, 
+      "off_work": true
+    }
+  }
+]
