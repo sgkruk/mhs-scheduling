@@ -1,0 +1,1004 @@
+[
+  {
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_logentry", 
+      "name": "Can add log entry", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_logentry", 
+      "name": "Can change log entry", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_logentry", 
+      "name": "Can delete log entry", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_group", 
+      "name": "Can add group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_message", 
+      "name": "Can add message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_permission", 
+      "name": "Can add permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_user", 
+      "name": "Can add user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_group", 
+      "name": "Can change group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_message", 
+      "name": "Can change message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_permission", 
+      "name": "Can change permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_user", 
+      "name": "Can change user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_group", 
+      "name": "Can delete group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_message", 
+      "name": "Can delete message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_permission", 
+      "name": "Can delete permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_user", 
+      "name": "Can delete user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_contenttype", 
+      "name": "Can add content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_contenttype", 
+      "name": "Can change content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_contenttype", 
+      "name": "Can delete content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_daydetail", 
+      "name": "Can add day detail", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_dayheader", 
+      "name": "Can add day header", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_employee", 
+      "name": "Can add employee", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_period", 
+      "name": "Can add period", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_daydetail", 
+      "name": "Can change day detail", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_dayheader", 
+      "name": "Can change day header", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_employee", 
+      "name": "Can change employee", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_period", 
+      "name": "Can change period", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_daydetail", 
+      "name": "Can delete day detail", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_dayheader", 
+      "name": "Can delete day header", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_employee", 
+      "name": "Can delete employee", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_period", 
+      "name": "Can delete period", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_session", 
+      "name": "Can add session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_session", 
+      "name": "Can change session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_session", 
+      "name": "Can delete session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_site", 
+      "name": "Can add site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_site", 
+      "name": "Can change site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_site", 
+      "name": "Can delete site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "sgkruk", 
+      "first_name": "Serge", 
+      "last_name": "Kruk", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2008-12-05 07:15:43", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$c2299$2118a893f63e1d945f3ee358fac763d7dba14acc", 
+      "email": "sgkruk@acm.org", 
+      "date_joined": "2008-12-04 17:30:00"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "contenttype", 
+      "name": "content type", 
+      "app_label": "contenttypes"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "daydetail", 
+      "name": "day detail", 
+      "app_label": "scheduling"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "dayheader", 
+      "name": "day header", 
+      "app_label": "scheduling"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "employee", 
+      "name": "employee", 
+      "app_label": "scheduling"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "group", 
+      "name": "group", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "logentry", 
+      "name": "log entry", 
+      "app_label": "admin"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "message", 
+      "name": "message", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "period", 
+      "name": "period", 
+      "app_label": "scheduling"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "permission", 
+      "name": "permission", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "session", 
+      "name": "session", 
+      "app_label": "sessions"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "site", 
+      "name": "site", 
+      "app_label": "sites"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "user", 
+      "name": "user", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": "c41a055c343e9581ad42acb79210528a", 
+    "model": "sessions.session", 
+    "fields": {
+      "expire_date": "2008-12-18 18:23:24", 
+      "session_data": "gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEESwF1LmYyZTQ1OWQ5OGFhOTdhOTQwOTFl\nYTlhMWVlYTZlZDBi\n"
+    }
+  }, 
+  {
+    "pk": "6d0d15ea03581c77fec041e894882883", 
+    "model": "sessions.session", 
+    "fields": {
+      "expire_date": "2008-12-19 07:15:43", 
+      "session_data": "gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEESwF1LmYyZTQ1OWQ5OGFhOTdhOTQwOTFl\nYTlhMWVlYTZlZDBi\n"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "scheduling.employee", 
+    "fields": {
+      "first_name": "Serge", 
+      "last_name": "Kruk", 
+      "max_hours_per_week": 45, 
+      "has_key": true, 
+      "has_license": true, 
+      "nickname": "Serge"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "scheduling.period", 
+    "fields": {
+      "starting_date": "2008-12-05", 
+      "ending_date": "2008-12-15", 
+      "name": "December"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": "17:08:25", 
+      "veterinarian": "N", 
+      "period": 1, 
+      "closing_time": "17:08:29"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-06", 
+      "opening_time": null, 
+      "veterinarian": "F", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "N", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "F", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "F", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "S", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "F", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "F", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "S", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "F", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "N", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "scheduling.dayheader", 
+    "fields": {
+      "date": "2008-12-05", 
+      "opening_time": null, 
+      "veterinarian": "F", 
+      "period": 1, 
+      "closing_time": null
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "scheduling.daydetail", 
+    "fields": {
+      "employee": 1, 
+      "header": 1, 
+      "ending_time": null, 
+      "starting_time": null, 
+      "off_work": true
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 17:21:09", 
+      "object_repr": "DayDetail object", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 17:20:49", 
+      "object_repr": "Serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 2, 
+      "action_time": "2008-12-05 17:12:21", 
+      "object_repr": "December", 
+      "object_id": "1", 
+      "change_message": "Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\". Added day header \"2008/12/05 Friday\".", 
+      "user": 1, 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 2, 
+      "action_time": "2008-12-05 17:10:56", 
+      "object_repr": "December", 
+      "object_id": "1", 
+      "change_message": "No fields changed.", 
+      "user": 1, 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 2, 
+      "action_time": "2008-12-05 17:09:47", 
+      "object_repr": "December", 
+      "object_id": "1", 
+      "change_message": "Added day header \"2008/12/06 Saturday\".", 
+      "user": 1, 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 17:08:32", 
+      "object_repr": "December", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:36:41", 
+      "object_repr": "DayDetail object", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:36:18", 
+      "object_repr": "2008/12/05 Friday", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:35:42", 
+      "object_repr": "Tom", 
+      "object_id": "2", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:35:24", 
+      "object_repr": "Serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:34:44", 
+      "object_repr": "2008/12/052008/12/15", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:14:44", 
+      "object_repr": "Serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:14:25", 
+      "object_repr": "2008/12/06", 
+      "object_id": "2", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:13:53", 
+      "object_repr": "2008/12/05", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 16:05:43", 
+      "object_repr": "2008/00/05", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 15:51:08", 
+      "object_repr": "Serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 15:48:31", 
+      "object_repr": "DayDetail object", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 15:47:55", 
+      "object_repr": "DayHeader object", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 15:47:32", 
+      "object_repr": "Serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 15:39:42", 
+      "object_repr": "DayDetail object", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 15:37:59", 
+      "object_repr": "DayHeader object", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 15:37:34", 
+      "object_repr": "Serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-05 14:50:16", 
+      "object_repr": "serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 2, 
+      "action_time": "2008-12-05 14:39:18", 
+      "object_repr": "tom", 
+      "object_id": "2", 
+      "change_message": "No fields changed.", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-04 18:50:44", 
+      "object_repr": "tom", 
+      "object_id": "2", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 2, 
+      "action_time": "2008-12-04 18:47:25", 
+      "object_repr": "serge", 
+      "object_id": "1", 
+      "change_message": "No fields changed.", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 1, 
+      "action_time": "2008-12-04 18:47:22", 
+      "object_repr": "serge", 
+      "object_id": "1", 
+      "change_message": "", 
+      "user": 1, 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "admin.logentry", 
+    "fields": {
+      "action_flag": 2, 
+      "action_time": "2008-12-04 18:27:40", 
+      "object_repr": "sgkruk", 
+      "object_id": "1", 
+      "change_message": "Changed first_name and last_name.", 
+      "user": 1, 
+      "content_type": 3
+    }
+  }
+]

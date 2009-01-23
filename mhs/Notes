@@ -1,0 +1,38 @@
+To create project: 
+   django-admin startproject PROJECTNAME
+
+To start the dev server (lightweight server for dev ONLY)
+   cd mhsweb/
+   python manage.py runserver 8080
+
+Setup the database engine in settings.py
+CAREFUL: The names in there of sqlite.db and templates are ABSOLUTE.
+This makes it very hard to move from a Mac to my Desktop.
+
+Need a database and user, at least.
+Then 
+	 python manage.py syncdb
+
+To create an app (application, part of a larger project)
+   python manage.py startapp APPNAME
+
+
+To change the model (i.e. the database schema)
+   edit models.py
+   Ensure the settings.py fila has PROJECTNAME.APPNAME in the apps
+   Then 
+   python manage.py reset APPNAME (to delete the database)
+   python manage.py syncdb
+   
+To get the admin generator
+   Uncomment the two lines at the top or urls.py
+   python manage.py syncdb
+
+To get one specific model to be handled by the admin
+   create a file admin.py in the APPNAME directory
+   It includes
+from PROJECTNAME.APPNAME.models import MODELNAME
+from django.contrib import admin
+
+admin.site.register(MODELNAME)
+

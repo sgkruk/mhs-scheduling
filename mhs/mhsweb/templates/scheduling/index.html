@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  {% if last_periods %}
+  <h2>
+  {% for period in last_periods %}
+  <a href="{{ period.get_absolute_url }}">
+  {{ period.name }}: from  {{ period.starting_date }} to  {{ period.ending_date }}</a>
+  {% endfor %}
+  </h2>
+  {% else %}
+  <p>No periods are available.</p>
+  {% endif %}
+
+  <h2>
+  <a href="new"> Create a new scheduling period</a>
+  </h2>
+  <h2>
+  <a href="run"> Run the scheduling AI</a>
+  </h2>
+  <h2>
+  <a href="change"> View/Edit the current schedule</a>
+  </h2>
+</div>
+{% endblock %}
