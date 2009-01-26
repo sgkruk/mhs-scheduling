@@ -4,7 +4,7 @@
 :- local struct(assignment(employee, sstart, send, startkey, startlicense, endkey, endlicense)).
 :- local struct(day(dayofmonth, vettype, day_schedule, dayofweek)). % number,
 
-lastday(3). %Number of days in month
+lastday(7). %Number of days in month
 
 %employee/3 is Employee's Number, Name, Max Hours per Week
 employee(1,theresa,50).
