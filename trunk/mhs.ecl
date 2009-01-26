@@ -778,20 +778,6 @@ schedule(First_Day_Of_Week,Employee,Current_Week) :-
      report_success:show_schedule(Employee,Current_Week)}
   ).
   
-var_choice(Assignment,Criterion) :-
-  Criterion is 1.
-
-val_choice(Assignment,In,Out) :-
-% If In== Month-V and V==[], then this is the first time we get called and we
-% need to do the sort thingny to order the employees in the order we
-% want to try them out for this assignment else we take the head of
-% the vector V as the employee to try and Out is the tail of V
-% The structure of V could be [(Emp,Start,End)*]
-  Assignment = assignment{employee:Employee, sstart:Start, send: End},
-  indomain(Employee),
-  indomain(Start),
-  indomain(End).
-  
 employee_Hours_In_Week(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek,_,_,_) :-
 employee_Hours_In_Week(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek),
  writeln(hours:HoursWorkedInWeek).
@@ -820,6 +806,28 @@ turn_Month_into_a_list_of_assignments(Month,Assignments) :-
    ),
   flatten(As,Assignments).
 
+var_choice(Assignment,Criterion) :-
+  Criterion is 1.
+
+
+% Predicate that is the signature of the first time we get called
+val_choice(Assignment,(Month-[]),Out) :-
+  findall(Employee,employee(Employee,_,_),EmployeeList),
+% In this pre-alpha implementation we are just naively setting out to the list of Employees	
+	Out = EmployeeList.
+
+% If In== Month-V and V==[], then this is the first time we get called and we
+% need to do the sort thing-y to order the employees in the order we
+% want to try them out for this assignment else we take the head of
+% the vector V as the employee to try and Out is the tail of V
+% The structure of V could be [(Emp,Start,End)*]
+val_choice(Assignment,(Month-[V|Out]),Out) :-
+  Assignment = assignment{employee:V, sstart:Start, send: End},
+
+  %indomain(Employee),
+  indomain(Start),
+  indomain(End).
+  
 schedule(Month) :-
   construct(Month),
   constraints(Month),
@@ -827,7 +835,17 @@ schedule(Month) :-
   writeln(assignemnts:Assignments),
 
   bb_min(
-    (search(Assignments,0,var_choice,val_choice((Month-[]),_),complete,[]),objective(Month,Value)),
+    (
+    	search(
+				Assignments,
+				0,
+				var_choice, % maybe just use "input_order" if we never have var_choice do actual work
+				val_choice((Month-[]),_),
+				complete,
+				[]
+			),
+			objective(Month,Value)
+    ),
     Value,
     bb_options{from:0,timeout:50,report_failure:show_schedule(Month)}),
   
