@@ -4,7 +4,7 @@
 :- local struct(assignment(employee, sstart, send, startkey, startlicense, endkey, endlicense)).
 :- local struct(day(dayofmonth, vettype, day_schedule, dayofweek)). % number,
 
-lastday(7). %Number of days in month
+lastday(3). %Number of days in month
 
 %employee/3 is Employee's Number, Name, Max Hours per Week
 employee(1,theresa,50).
@@ -287,7 +287,7 @@ full_time(Current_Employee,LastDayOfweek,Month,HoursWorkedInWeek) :-
   ),
   sumlist(Durations,HoursWorkedInWeek).
   
-  formatTime(MilitaryHour,HourString,DayPart) :-
+formatTime(MilitaryHour,HourString,DayPart) :-
   (MilitaryHour > 12
    ->
      HourString is MilitaryHour - 12, DayPart = 'pm';
@@ -806,27 +806,41 @@ turn_Month_into_a_list_of_assignments(Month,Assignments) :-
    ),
   flatten(As,Assignments).
 
-var_choice(Assignment,Criterion) :-
+var_choice(_Assignment,Criterion) :-
   Criterion is 1.
 
 
+
 % Predicate that is the signature of the first time we get called
+% We get the whole month.  We construct a list of (E,S)
+% Then we sort/4 according to S and deconstruct the couples into a list
+% of E only, called EmployeeList.
 val_choice(Assignment,(Month-[]),Out) :-
   findall(Employee,employee(Employee,_,_),EmployeeList),
 % In this pre-alpha implementation we are just naively setting out to the list of Employees	
-	Out = EmployeeList.
+  grind(EmployeeList,Assignment,OutEmployees),
+  Out = (Month-OutEmployees).
+
 
 % If In== Month-V and V==[], then this is the first time we get called and we
 % need to do the sort thing-y to order the employees in the order we
 % want to try them out for this assignment else we take the head of
 % the vector V as the employee to try and Out is the tail of V
 % The structure of V could be [(Emp,Start,End)*]
-val_choice(Assignment,(Month-[V|Out]),Out) :-
-  Assignment = assignment{employee:V, sstart:Start, send: End},
+val_choice(Assignment,(Month-L),Out) :-
+  grind(L,Assignment,VOut),
+  Out = (Month-VOut).
 
-  %indomain(Employee),
+grind(List,Assignment,Out) :-
+  Assignment = assignment{employee:Employee, sstart:Start, send: End},
+  (ground(Employee) -> true ; peel(List,Employee,Out)),
   indomain(Start),
   indomain(End).
+
+peel([H|T], H, T).
+peel([_|T],E,Outlist) :-
+  peel(T,E,Outlist).
+  
   
 schedule(Month) :-
   construct(Month),
@@ -835,20 +849,20 @@ schedule(Month) :-
   writeln(assignemnts:Assignments),
 
   bb_min(
-    (
-    	search(
-				Assignments,
-				0,
-				var_choice, % maybe just use "input_order" if we never have var_choice do actual work
-				val_choice((Month-[]),_),
-				complete,
-				[]
-			),
-			objective(Month,Value)
-    ),
-    Value,
-    bb_options{from:0,timeout:50,report_failure:show_schedule(Month)}),
-  
+            (
+                search(
+                          Assignments,
+                          0,
+                          var_choice, % maybe just use "input_order" if we never have var_choice do actual work
+                          val_choice((Month-[]),_),
+                          complete,
+                          []
+                      ),
+                objective(Month,Value)
+            ),
+            Value,
+%            bb_options{from:0,timeout:50,report_failure:show_schedule(Month)}),
+            bb_options{from:0,timeout:50}),  
   % NOTE: need to use the val_choice to add lower bounds to Value to
   % bound and kill some branches of the search tree.
   
