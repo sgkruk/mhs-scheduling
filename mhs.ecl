@@ -4,7 +4,7 @@
 :- local struct(assignment(employee, sstart, send, startkey, startlicense, endkey, endlicense)).
 :- local struct(day(dayofmonth, vettype, day_schedule, dayofweek)). % number,
 
-lastday(3). %Number of days in month
+lastday(7). %Number of days in month
 
 %employee/3 is Employee's Number, Name, Max Hours per Week
 employee(1,theresa,50).
@@ -806,10 +806,16 @@ turn_Month_into_a_list_of_assignments(Month,Assignments) :-
    ),
   flatten(As,Assignments).
 
+peel([H|T], H, T).
+peel([_|T],E,Outlist) :-  peel(T,E,Outlist).
+
+score_employees([],Scored_Employees).
+score_employees([H|T],Scored_Employees) :-
+ append([(H,4)], Scored_Employees, Appended_Scored_Employees),
+ score_employees( T, Appended_Scored_Employees ).
+  
 var_choice(_Assignment,Criterion) :-
   Criterion is 1.
-
-
 
 % Predicate that is the signature of the first time we get called
 % We get the whole month.  We construct a list of (E,S)
@@ -817,10 +823,10 @@ var_choice(_Assignment,Criterion) :-
 % of E only, called EmployeeList.
 val_choice(Assignment,(Month-[]),Out) :-
   findall(Employee,employee(Employee,_,_),EmployeeList),
+	writeln(EmployeeList),exit(1),
 % In this pre-alpha implementation we are just naively setting out to the list of Employees	
   grind(EmployeeList,Assignment,OutEmployees),
   Out = (Month-OutEmployees).
-
 
 % If In== Month-V and V==[], then this is the first time we get called and we
 % need to do the sort thing-y to order the employees in the order we
@@ -837,39 +843,29 @@ grind(List,Assignment,Out) :-
   indomain(Start),
   indomain(End).
 
-peel([H|T], H, T).
-peel([_|T],E,Outlist) :-
-  peel(T,E,Outlist).
-  
-  
 schedule(Month) :-
   construct(Month),
   constraints(Month),
   turn_Month_into_a_list_of_assignments(Month,Assignments),
-  writeln(assignemnts:Assignments),
+  %writeln(assignemnts:Assignments),
 
   bb_min(
-            (
-                search(
-                          Assignments,
-                          0,
-                          var_choice, % maybe just use "input_order" if we never have var_choice do actual work
-                          val_choice((Month-[]),_),
-                          complete,
-                          []
-                      ),
-                objective(Month,Value)
-            ),
-            Value,
+  		(
+        	search(
+								Assignments,
+                0,
+                var_choice, % maybe just use "input_order" if we never have var_choice do actual work
+                val_choice((Month-[]),_),
+                complete,
+                []
+              ),
+              objective(Month,Value)
+        ),
+        Value,
 %            bb_options{from:0,timeout:50,report_failure:show_schedule(Month)}),
-            bb_options{from:0,timeout:50}),  
+        bb_options{from:0,timeout:20}),  
   % NOTE: need to use the val_choice to add lower bounds to Value to
   % bound and kill some branches of the search tree.
-  
-  
-  
-  
-  
   
 %  bb_min(
 %    (search(Month),objective(Month,Value)),
