@@ -782,7 +782,9 @@ employee_Hours_In_Week(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek,
 employee_Hours_In_Week(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek),
  writeln(hours:HoursWorkedInWeek).
 
-employee_Hours_In_Week(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek) :-
+employee_Hours_In_Week(Current_Employee,Month,HoursWorkedInWeek) :-
+  turn_Month_into_a_list_of_assignments(Month,Day_Schedules_Of_Week), 
+  writeln(Day_Schedules_Of_Week),
   (
     foreach(Day_Schedule,Day_Schedules_Of_Week), 
     fromto([],In,Out,Durations), % what if someone works none in the week? Maybe initialize with [0]
@@ -790,14 +792,15 @@ employee_Hours_In_Week(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek)
     do
       Day_Schedule = assignment{employee:Scheduled_Employee, sstart:Start, send:End},
       (
-        Scheduled_Employee =:= Current_Employee ->
+          (ground(Scheduled_Employee),Scheduled_Employee =:= Current_Employee) ->
           Duration is End-Start,
           Out=[Duration | In]
         ;
           Out=In
       )
   ),
-  sumlist(Durations,HoursWorkedInWeek).
+  ground(Durations) -> sumlist(Durations,HoursWorkedInWeek) ;
+                       HoursWorkedInWeek is 0.
 
 turn_Month_into_a_list_of_assignments(Month,Assignments) :-
   (foreach(Day,Month),fromto([],In,Out,As) do
@@ -809,10 +812,17 @@ turn_Month_into_a_list_of_assignments(Month,Assignments) :-
 peel([H|T], H, T).
 peel([_|T],E,Outlist) :-  peel(T,E,Outlist).
 
-score_employees([],Scored_Employees).
-score_employees([H|T],Scored_Employees) :-
- append([(H,4)], Scored_Employees, Appended_Scored_Employees),
- score_employees( T, Appended_Scored_Employees ).
+score_employees(Li,Lo):-
+  score_employees(Li,[],Lo).
+score_employees([],Lo,Lo).
+score_employees([H | T],A,Lo):-
+  A1=[(H,4) | A],
+  score_employees(T,A1,Lo).
+
+%score_employees([],_Scored_Employees).
+%score_employees([H|T],Scored_Employees) :-
+%  writeln([(H,4)| Scored_Employees] ),
+%  score_employees( T, [(H,4)| Scored_Employees] ).
   
 var_choice(_Assignment,Criterion) :-
   Criterion is 1.
@@ -823,7 +833,9 @@ var_choice(_Assignment,Criterion) :-
 % of E only, called EmployeeList.
 val_choice(Assignment,(Month-[]),Out) :-
   findall(Employee,employee(Employee,_,_),EmployeeList),
-	writeln(EmployeeList),exit(1),
+  writeln('allo'),
+  employee_Hours_In_Week(1,Month,H),
+	writeln(H),
 % In this pre-alpha implementation we are just naively setting out to the list of Employees	
   grind(EmployeeList,Assignment,OutEmployees),
   Out = (Month-OutEmployees).
