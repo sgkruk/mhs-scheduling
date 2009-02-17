@@ -857,7 +857,7 @@ score_employees(Assignments,Employees,Employees_With_Scores):-
 score_employees(_Assignments,[],Employees_With_Scores,Employees_With_Scores).
 
 score_employees(Assignments,[H | Tail],Accumulator,Employees_With_Scores) :-
-	writeln(score_employees:[H | Tail]-Accumulator),
+	%writeln(score_employees:[H | Tail]-Accumulator),
 	employees_hours_in_assignments(H,Assignments,HoursWorkedInWeek),
   Accumulator_New = [(H,HoursWorkedInWeek) | Accumulator],
   score_employees(Assignments,Tail,Accumulator_New,Employees_With_Scores).
@@ -878,19 +878,20 @@ val_choice(Assignment,(Assignments-[]),Out) :-
   findall(Employee,employee(Employee,_,_),EmployeeList),
   %writeln('allo'),
 	score_employees(Assignments,EmployeeList,ScoredEmployeeList),
-	sort(2,<,ScoredEmployeeList,SortedScoredEmployeeList),
-	writeln(scored:ScoredEmployeeList-SortedScoredEmployeeList),
+	%writeln(scored:ScoredEmployeeList),
+	sort(2,=<,ScoredEmployeeList,SortedScoredEmployeeList),
+	%writeln(sorted:SortedScoredEmployeeList),
   (foreach((Emp,_),SortedScoredEmployeeList),fromto([],In,Out,SortedEmployeeList) 
 		do
       Out = [Emp|In]
    ),
-	writeln(sorted:SortedEmployeeList),
-	pause,
+	%writeln(flatsorted:SortedEmployeeList),
+	%pause,
   %employees_hours_in_assignments(1,Assignments,HoursWorkedInWeek),
   %employee_Hours_In_Week(1,Month,H),
 	%writeln(HoursWorkedInWeek),
 % In this pre-alpha implementation we are just naively setting out to the list of Employees	
-  grind(EmployeeList,Assignment,OutEmployees),
+  grind(SortedEmployeeList,Assignment,OutEmployees),
   Out = (Assignments-OutEmployees).
 
 % If In== Month-V and V==[], then this is the first time we get called and we
