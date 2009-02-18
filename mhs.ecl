@@ -7,13 +7,13 @@
 lastday(7). %Number of days in month
 
 %employee/3 is Employee's Number, Name, Max Hours per Week
-employee(1,theresa,50).
-employee(2,chris,50).
-employee(3,heidi,50).
-employee(4,kim,50).
-employee(5,eva,50).
-employee(6,kristin,50).
-employee(7,holly,40).% Part time employee cannot work except on Tue., Thu., Sat.
+employee(1,theresa,49).
+employee(2,chris,49).
+employee(3,heidi,49).
+employee(4,kim,49).
+employee(5,eva,49).
+employee(6,kristin,49).
+employee(7,holly,32).% Part time employee cannot work except on Tue., Thu., Sat.
   % What is the effect of an additional employee? Licensed or unlicensed? full or part time?
 
 licensed(1). % All licensed employees
@@ -368,6 +368,7 @@ objective_cost(StartHours,EmployeeValueForMonth) :-
   EmployeeValueForMonth is 500+45*5+VEn-VEs.
   
 % Snake eyes adds 1024, 512, 256, ... for each -00-
+% -00- is consecutive days off. High is good.
 snake_eyes(L,V) :- snake_eyes(L,0,256,V).
 snake_eyes(L,A,_,A) :- length(L,1),!.
 snake_eyes([H0 | T], A, N, V) :-
@@ -376,6 +377,8 @@ snake_eyes([H0 | T], A, N, V) :-
         (H =:= 0 -> A0 is A+N, N0 is N//2 ; A0 is A, N0 is N),
         snake_eyes(T, A0, N0, V).
         
+% Returns a cost for difference in consecutive start times. High is
+% bad. 
 pd(L,V) :- pd(L,0,V).
 pd(L,A,A) :- length(L,1),!.
 pd([H0 | T], A, V) :-
@@ -383,7 +386,7 @@ pd([H0 | T], A, V) :-
         H is H0 * H1,
         Hdiff is H0-H1,
         abs(Hdiff,AHdiff),
-        (H =:= 0 -> A0 is A ; A0 is A + AHdiff),
+        (H =:= 0 -> A0 is A ; A0 is A + AHdiff*5),
         pd(T, A0, V).
 
 dayofweek(I,N) :-
@@ -646,151 +649,153 @@ schedule(Month,Value,oct) :-
    day{dayofmonth:7, vettype:slow, day_schedule:[
       assignment{employee:2, sstart:8, send:17}, 
       assignment{employee:7, sstart:8, send:17}, 
-      assignment{employee:4, sstart:8, send:17}], dayofweek:sat}, 
-   day{dayofmonth:8, vettype:none, day_schedule:[], dayofweek:sun}, 
-   day{dayofmonth:9, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:8, send:17}, 
-      assignment{employee:6, sstart:8, send:17}, 
-      assignment{employee:5, sstart:9, send:18}, 
-      assignment{employee:7, sstart:10, send:19}, 
-      assignment{employee:4, sstart:9, send:20}], dayofweek:mon}, 
-   day{dayofmonth:10, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:7, send:16}, 
-      assignment{employee:6, sstart:7, send:18}, 
-      assignment{employee:2, sstart:9, send:18}, 
-      assignment{employee:7, sstart:10, send:19}, 
-      assignment{employee:4, sstart:9, send:20}, 
-      assignment{employee:3, sstart:9, send:20}], dayofweek:tue}, 
-   day{dayofmonth:11, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:7, send:16}, 
-      assignment{employee:6, sstart:7, send:16}, 
-      assignment{employee:5, sstart:8, send:17}, 
-      assignment{employee:4, sstart:9, send:20}, 
-      assignment{employee:3, sstart:9, send:20}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:wed}, 
-   day{dayofmonth:12, vettype:slow, day_schedule:[
-      assignment{employee:6, sstart:7, send:16}, 
-      assignment{employee:2, sstart:7, send:18}, 
-      assignment{employee:5, sstart:8, send:17}, 
-      assignment{employee:4, sstart:9, send:20}, 
-      assignment{employee:3, sstart:9, send:20}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:thu}, 
-   day{dayofmonth:13, vettype:slow, day_schedule:[
-      assignment{employee:6, sstart:7, send:16}, 
-      assignment{employee:1, sstart:7, send:16}, 
-      assignment{employee:5, sstart:8, send:17}, 
-      assignment{employee:7, sstart:10, send:19}, 
-      assignment{employee:3, sstart:9, send:20}], dayofweek:fri}, 
-   day{dayofmonth:14, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:8, send:17}, 
-      assignment{employee:5, sstart:8, send:17}, 
-      assignment{employee:2, sstart:8, send:17}], dayofweek:sat}, 
-   day{dayofmonth:15, vettype:none, day_schedule:[], dayofweek:sun}, 
-   day{dayofmonth:16, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:7, send:18}, 
-      assignment{employee:4, sstart:8, send:17}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:5, sstart:9, send:18}, 
-      assignment{employee:7, sstart:9, send:18}], dayofweek:mon}, 
-   day{dayofmonth:17, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:7, send:18}, 
-      assignment{employee:2, sstart:8, send:19}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:5, sstart:9, send:18}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:tue}, 
-   day{dayofmonth:18, vettype:slow, day_schedule:[
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:5, sstart:9, send:19}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:wed}, 
-   day{dayofmonth:19, vettype:slow, day_schedule:[
-      assignment{employee:2, sstart:7, send:18}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:5, sstart:10, send:19}, 
-      assignment{employee:6, sstart:7, send:16}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:thu}, 
-   day{dayofmonth:20, vettype:slow, day_schedule:[
-      assignment{employee:3, sstart:9, send:18}, 
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:5, sstart:11, send:20}, 
-      assignment{employee:6, sstart:7, send:16}, 
-      assignment{employee:7, sstart:11, send:20}], dayofweek:fri}, 
-   day{dayofmonth:21, vettype:slow, day_schedule:[
-      assignment{employee:6, sstart:8, send:17}, 
-      assignment{employee:4, sstart:8, send:17}, 
-      assignment{employee:2, sstart:8, send:17}], dayofweek:sat}, 
-   day{dayofmonth:22, vettype:none, day_schedule:[], dayofweek:sun}, 
-   day{dayofmonth:23, vettype:slow, day_schedule:[
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:8, send:17}, 
-      assignment{employee:5, sstart:8, send:17}, 
-      assignment{employee:6, sstart:10, send:19}, 
-      assignment{employee:7, sstart:9, send:20}], dayofweek:mon}, 
-   day{dayofmonth:24, vettype:slow, day_schedule:[
-      assignment{employee:2, sstart:9, send:20}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:5, sstart:7, send:16}, 
-      assignment{employee:6, sstart:9, send:18}, 
-      assignment{employee:7, sstart:9, send:20}], dayofweek:tue}, 
-   day{dayofmonth:25, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:9, send:20}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:5, sstart: 7, send:16}, 
-      assignment{employee:6, sstart:9, send:18}, 
-      assignment{employee:7, sstart:9, send:20}], dayofweek:wed}, 
-   day{dayofmonth:26, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:8, send:19}, 
-      assignment{employee:2, sstart:7, send:18}, 
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:6, sstart:9, send:18}, 
-      assignment{employee:7, sstart:8, send:19}], dayofweek:thu}, 
-   day{dayofmonth:27, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:9, send:20}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:9, send:16}, 
-      assignment{employee:5, sstart:9, send:16}, 
-      assignment{employee:6, sstart:10, send:19}], dayofweek:fri}, 
-   day{dayofmonth:28, vettype:slow, day_schedule:[
-      assignment{employee:5, sstart:8, send:17}, 
-      assignment{employee:3, sstart:8, send:17}], dayofweek:sat}, 
-   day{dayofmonth:29, vettype:none, day_schedule:[], dayofweek:sun}, 
-   day{dayofmonth:30, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:8, send:17}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:8, send:17}, 
-      assignment{employee:6, sstart:11, send:20}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:mon}, 
-   day{dayofmonth:31, vettype:slow, day_schedule:[
-      assignment{employee:2, sstart:9, send:20}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:7, send:16},
-      assignment{employee:6, sstart:11,send:20}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:tue}, 
-   day{dayofmonth:32, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:7, send:16}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:6, sstart:11,send:20}, 
-      assignment{employee:7, sstart:10,send:19}], dayofweek:wed}, 
-   day{dayofmonth:33, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:7, send:16}, 
-      assignment{employee:2, sstart:9, send:20}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:6, sstart:11,send:20}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:thu}, 
-   day{dayofmonth:34, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:7, send:16}, 
-      assignment{employee:3, sstart:8, send:17}, 
-      assignment{employee:4, sstart:7, send:16}, 
-      assignment{employee:6, sstart:11, send:20}, 
-      assignment{employee:7, sstart:10, send:19}], dayofweek:fri}, 
-   day{dayofmonth:35, vettype:slow, day_schedule:[
-      assignment{employee:1, sstart:8, send:17}, 
-      assignment{employee:4, sstart:8, send:17}, 
-      assignment{employee:2, sstart:8, send:17}], dayofweek:sat} ],
+      assignment{employee:4, sstart:8, send:17}], dayofweek:sat}
+          %%, 
+%%    day{dayofmonth:8, vettype:none, day_schedule:[], dayofweek:sun}, 
+%%    day{dayofmonth:9, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:8, send:17}, 
+%%       assignment{employee:6, sstart:8, send:17}, 
+%%       assignment{employee:5, sstart:9, send:18}, 
+%%       assignment{employee:7, sstart:10, send:19}, 
+%%       assignment{employee:4, sstart:9, send:20}], dayofweek:mon}, 
+%%    day{dayofmonth:10, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:7, send:16}, 
+%%       assignment{employee:6, sstart:7, send:18}, 
+%%       assignment{employee:2, sstart:9, send:18}, 
+%%       assignment{employee:7, sstart:10, send:19}, 
+%%       assignment{employee:4, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:9, send:20}], dayofweek:tue}, 
+%%    day{dayofmonth:11, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:7, send:16}, 
+%%       assignment{employee:6, sstart:7, send:16}, 
+%%       assignment{employee:5, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:9, send:20}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:wed}, 
+%%    day{dayofmonth:12, vettype:slow, day_schedule:[
+%%       assignment{employee:6, sstart:7, send:16}, 
+%%       assignment{employee:2, sstart:7, send:18}, 
+%%       assignment{employee:5, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:9, send:20}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:thu}, 
+%%    day{dayofmonth:13, vettype:slow, day_schedule:[
+%%       assignment{employee:6, sstart:7, send:16}, 
+%%       assignment{employee:1, sstart:7, send:16}, 
+%%       assignment{employee:5, sstart:8, send:17}, 
+%%       assignment{employee:7, sstart:10, send:19}, 
+%%       assignment{employee:3, sstart:9, send:20}], dayofweek:fri}, 
+%%    day{dayofmonth:14, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:8, send:17}, 
+%%       assignment{employee:5, sstart:8, send:17}, 
+%%       assignment{employee:2, sstart:8, send:17}], dayofweek:sat}, 
+%%    day{dayofmonth:15, vettype:none, day_schedule:[], dayofweek:sun}, 
+%%    day{dayofmonth:16, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:7, send:18}, 
+%%       assignment{employee:4, sstart:8, send:17}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:5, sstart:9, send:18}, 
+%%       assignment{employee:7, sstart:9, send:18}], dayofweek:mon}, 
+%%    day{dayofmonth:17, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:7, send:18}, 
+%%       assignment{employee:2, sstart:8, send:19}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:5, sstart:9, send:18}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:tue}, 
+%%    day{dayofmonth:18, vettype:slow, day_schedule:[
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:5, sstart:9, send:19}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:wed}, 
+%%    day{dayofmonth:19, vettype:slow, day_schedule:[
+%%       assignment{employee:2, sstart:7, send:18}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:5, sstart:10, send:19}, 
+%%       assignment{employee:6, sstart:7, send:16}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:thu}, 
+%%    day{dayofmonth:20, vettype:slow, day_schedule:[
+%%       assignment{employee:3, sstart:9, send:18}, 
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:5, sstart:11, send:20}, 
+%%       assignment{employee:6, sstart:7, send:16}, 
+%%       assignment{employee:7, sstart:11, send:20}], dayofweek:fri}, 
+%%    day{dayofmonth:21, vettype:slow, day_schedule:[
+%%       assignment{employee:6, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:8, send:17}, 
+%%       assignment{employee:2, sstart:8, send:17}], dayofweek:sat}, 
+%%    day{dayofmonth:22, vettype:none, day_schedule:[], dayofweek:sun}, 
+%%    day{dayofmonth:23, vettype:slow, day_schedule:[
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:8, send:17}, 
+%%       assignment{employee:5, sstart:8, send:17}, 
+%%       assignment{employee:6, sstart:10, send:19}, 
+%%       assignment{employee:7, sstart:9, send:20}], dayofweek:mon}, 
+%%    day{dayofmonth:24, vettype:slow, day_schedule:[
+%%       assignment{employee:2, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:5, sstart:7, send:16}, 
+%%       assignment{employee:6, sstart:9, send:18}, 
+%%       assignment{employee:7, sstart:9, send:20}], dayofweek:tue}, 
+%%    day{dayofmonth:25, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:5, sstart: 7, send:16}, 
+%%       assignment{employee:6, sstart:9, send:18}, 
+%%       assignment{employee:7, sstart:9, send:20}], dayofweek:wed}, 
+%%    day{dayofmonth:26, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:8, send:19}, 
+%%       assignment{employee:2, sstart:7, send:18}, 
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:6, sstart:9, send:18}, 
+%%       assignment{employee:7, sstart:8, send:19}], dayofweek:thu}, 
+%%    day{dayofmonth:27, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:9, send:16}, 
+%%       assignment{employee:5, sstart:9, send:16}, 
+%%       assignment{employee:6, sstart:10, send:19}], dayofweek:fri}, 
+%%    day{dayofmonth:28, vettype:slow, day_schedule:[
+%%       assignment{employee:5, sstart:8, send:17}, 
+%%       assignment{employee:3, sstart:8, send:17}], dayofweek:sat}, 
+%%    day{dayofmonth:29, vettype:none, day_schedule:[], dayofweek:sun}, 
+%%    day{dayofmonth:30, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:8, send:17}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:8, send:17}, 
+%%       assignment{employee:6, sstart:11, send:20}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:mon}, 
+%%    day{dayofmonth:31, vettype:slow, day_schedule:[
+%%       assignment{employee:2, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:7, send:16},
+%%       assignment{employee:6, sstart:11,send:20}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:tue}, 
+%%    day{dayofmonth:32, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:7, send:16}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:6, sstart:11,send:20}, 
+%%       assignment{employee:7, sstart:10,send:19}], dayofweek:wed}, 
+%%    day{dayofmonth:33, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:7, send:16}, 
+%%       assignment{employee:2, sstart:9, send:20}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:6, sstart:11,send:20}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:thu}, 
+%%    day{dayofmonth:34, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:7, send:16}, 
+%%       assignment{employee:3, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:7, send:16}, 
+%%       assignment{employee:6, sstart:11, send:20}, 
+%%       assignment{employee:7, sstart:10, send:19}], dayofweek:fri}, 
+%%    day{dayofmonth:35, vettype:slow, day_schedule:[
+%%       assignment{employee:1, sstart:8, send:17}, 
+%%       assignment{employee:4, sstart:8, send:17}, 
+%%       assignment{employee:2, sstart:8, send:17}], dayofweek:sat} 
+    ],
   objective(Month,Value),
 
 %% Here for testing with a ground Month  
@@ -906,7 +911,7 @@ val_choice(Assignment,(Month-L),Out) :-
 grind(List,Assignment,Out) :-
   Assignment = assignment{employee:Employee, sstart:Start, send: End},
   (ground(Employee) -> true ; peel(List,Employee,Out)),
-  indomain(Start),
+  (ground(End) -> indomain(Start,max) ; indomain(Start,min)),
   indomain(End).
 
 schedule(Month) :-
@@ -943,5 +948,5 @@ schedule(Month) :-
 %    %bb_options{from:0,report_success:show_schedule(Month)}),
 
   
-  %show_schedule(Month),
+  show_schedule(Month),
   !.
