@@ -453,18 +453,18 @@ full_time(Assignment,Num,Month) :-
 assignment(1,1,OpenHour,CloseHour,_, Employee,OpenHour,CloseHour) :-
 %writeln('solo'),
   findall(E,(licensed(E),key(E)),AllLicensedAndKeyed),
-  Employee::AllLicensedAndKeyed.
+  Employee::AllLicensedAndKeyed,!.
   
 assignment(1,2,OpenHour,CloseHour,_, Employee,OpenHour,CloseHour) :-
 %writeln('duo or less (1)'),
   findall(E,(licensed(E),key(E)),AllLicensedAndKeyed),
-  Employee::AllLicensedAndKeyed.
+  Employee::AllLicensedAndKeyed,!.
   
   % 2 employees to schedule, all must work all day
 assignment(2,2,OpenHour,CloseHour,_, Employee,OpenHour,CloseHour) :-
 %writeln('duo or less (2)'),
   findall(E,employee(E,_,_),AllLicensedAndKeyed),
-  Employee::AllLicensedAndKeyed.
+  Employee::AllLicensedAndKeyed,!.
   
   % #1 employee to schedule, must have license or key and work from open
 assignment(1,MaxEmployeesForDay,OpenHour,_,DayOfWeek, Employee,OpenHour,EndHour) :-
@@ -472,7 +472,7 @@ assignment(1,MaxEmployeesForDay,OpenHour,_,DayOfWeek, Employee,OpenHour,EndHour)
   MaxEmployeesForDay > 2,
   findall(E,(licensed(E);key(E)),AllLicensedOrKeyed),
   Employee::AllLicensedOrKeyed,
-  availshift( OpenHour, EndHour, DayOfWeek ).
+  availshift( OpenHour, EndHour, DayOfWeek ),!.
   
   % #2 employee to schedule, mustwork from open
 assignment(2,MaxEmployeesForDay,OpenHour,_,DayOfWeek, Employee,OpenHour,EndHour) :-
@@ -480,21 +480,21 @@ assignment(2,MaxEmployeesForDay,OpenHour,_,DayOfWeek, Employee,OpenHour,EndHour)
   MaxEmployeesForDay > 2,
   findall(E,employee(E,_,_),AllEmployees),
   Employee::AllEmployees,
-  availshift( OpenHour, EndHour, DayOfWeek ).
+  availshift( OpenHour, EndHour, DayOfWeek ),!.
   
   % 3rd employee to schedule, must have license or key and work 'til close
 assignment(3,_,_,CloseHour,DayOfWeek, Employee,StartHour,CloseHour) :-
 %writeln('Penultimate'),
   findall(E,(licensed(E);key(E)),AllLicensedOrKeyed),
   Employee::AllLicensedOrKeyed,
-  availshift( StartHour,CloseHour, DayOfWeek ).
+  availshift( StartHour,CloseHour, DayOfWeek ),!.
   
   % Final employee to schedule, must work 'til close
 assignment(4,_,_,CloseHour,DayOfWeek, Employee,StartHour,CloseHour) :-
 %writeln('Final'),
   findall(E,employee(E,_,_),AllEmployees),
   Employee::AllEmployees,
-  availshift( StartHour,CloseHour, DayOfWeek ).
+  availshift( StartHour,CloseHour, DayOfWeek ),!.
 
   % Default case: an employee working an available shift
 assignment(Ordinal,_,_,_,DayOfWeek, Employee,StartHour,EndHour) :-
@@ -502,7 +502,7 @@ assignment(Ordinal,_,_,_,DayOfWeek, Employee,StartHour,EndHour) :-
   Ordinal > 4,
   findall(E,employee(E,_,_),AllEmployees),
   Employee::AllEmployees,  
-  availshift( StartHour, EndHour, DayOfWeek ).
+  availshift( StartHour, EndHour, DayOfWeek ),!.
 
 constraints(Month) :-
   writeln("Constraining the Month"),
