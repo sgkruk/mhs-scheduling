@@ -298,7 +298,14 @@ objective(Month,Value) :-
    foreach(EmployeeValueForMonth,AllEmployeeValuesForMonth),
    param(Month) 
    do
-     objective_employee(Employee,Month,EmployeeValueForMonth)
+% This predicate gets us Day-based scores, such as start time variation 
+     objective_employee(Employee,Month,EmployeeDayBasedValueForMonth),
+% These lines get us Week-based scores, such as proximity to max hours
+		 employee_Hours_In_Week(Employee,Month,HoursWorkedInWeek),
+		 employee(Employee,_,EmployeesMaxHours),
+     Hdiff is HoursWorkedInWeek - EmployeesMaxHours,
+     abs(Hdiff,AHdiff),
+		 EmployeeValueForMonth is 200*AHdiff + EmployeeDayBasedValueForMonth
   ),
   sumlist(AllEmployeeValuesForMonth,Value).
 
@@ -364,8 +371,7 @@ current_week(Num,Start_day,End_day) :-
 in_range(N,S,E) :- N >= S, N =< E.
 
 full_time(Assignment,Num,Month) :-
-  Assignment = assignment{employee:Current_Employee,sstart:Start,send:
-                                                                     End},
+  Assignment = assignment{employee:Current_Employee,sstart:Start,send:End},
   ((   ground(Current_Employee),
        ground(Start),
        ground(End)
@@ -534,9 +540,7 @@ assign_Start_License(Day_Schedule,Clinic_Start) :-
                     [Employee,EmpStart]->inst)).
 assign_End_Key(Day_Schedule,Clinic_End) :-
   
-  Day_Schedule 
-  = assignment{employee:Employee, send:EmpEnd, endkey:
-                                                     Ends_Has_Key},
+  Day_Schedule = assignment{employee:Employee, send:EmpEnd, endkey:Ends_Has_Key},
   ((ground(EmpEnd),ground(Employee)) ->
       ((Clinic_End=:=EmpEnd,key(Employee)) -> Ends_Has_Key = 1;
                                               Ends_Has_Key = 0)
@@ -824,7 +828,15 @@ score_employees(_Assignments,[],Employees_With_Scores,Employees_With_Scores).
 score_employees(Assignments,[H | Tail],Accumulator,Employees_With_Scores) :-
 	%writeln(score_employees:[H | Tail]-Accumulator),
 	employees_hours_in_assignments(H,Assignments,HoursWorkedInWeek),
-  Accumulator_New = [(H,HoursWorkedInWeek) | Accumulator],
+
+	%score employee by remaining hours open to them
+	employee(H,_,EmployeesMaxHours),
+  Hdiff is EmployeesMaxHours - HoursWorkedInWeek,
+  %abs(Hdiff,AHdiff),
+	(EmployeesMaxHours > HoursWorkedInWeek -> Accumulator_New = [(H,Hdiff) | Accumulator]; Accumulator_New = [(H,0) | Accumulator]),
+%	Accumulator_New = [(H,HoursWorkedInWeek) | Accumulator],
+	
+  %Accumulator_New = [(H,HoursWorkedInWeek) | Accumulator],
   score_employees(Assignments,Tail,Accumulator_New,Employees_With_Scores).
 
 var_choice(_Assignment,Criterion) :-
@@ -839,7 +851,7 @@ val_choice(Assignment,(Assignments-[]),Out) :-
   %writeln('allo'),
 	score_employees(Assignments,EmployeeList,ScoredEmployeeList),
 	%writeln(scored:ScoredEmployeeList),
-	sort(2,=<,ScoredEmployeeList,SortedScoredEmployeeList),
+	sort(2,>=,ScoredEmployeeList,SortedScoredEmployeeList),
 	%writeln(sorted:SortedScoredEmployeeList),
   (foreach((Emp,_),SortedScoredEmployeeList),fromto([],In,Out,SortedEmployeeList) 
 		do
