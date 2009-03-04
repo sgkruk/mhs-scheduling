@@ -263,33 +263,9 @@ show_week_summary(Employee,LastDayOfweek,Month) :-
  
 full_time(Current_Employee,LastDayOfweek,Month,HoursWorkedInWeek) :-
   FirstDayOfweek is LastDayOfweek - 7,
-
   sublist(Month,FirstDayOfweek,7,Current_Week),
-  turn_Month_into_a_list_of_assignments(Current_Week,Day_Schedules_Of_Week),
-		
- % (
-  %  foreach(Day,Current_Week),
-   % fromto([],In,Out,Day_Schedules_Of_Week) 
- %   do
-  %    Day = day{day_schedule:Day_Schedules},
-  %    append(Day_Schedules, In, Out)
- % ),
-employees_hours_in_assignments(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek).	
-%  (
-%    foreach(Day_Schedule,Day_Schedules_Of_Week), 
-%    fromto([],In,Out,Durations), % what if someone works none in the week? Maybe initialize with [0]
-%    param(Current_Employee)
-%    do
-%      Day_Schedule = assignment{employee:Scheduled_Employee, sstart:Start, send:End},
-%      (
-%        Scheduled_Employee =:= Current_Employee ->
-%          Duration is End-Start,
-%          Out=[Duration | In]
-%        ;
-%          Out=In
-%      )
-%  ),
-%  sumlist(Durations,HoursWorkedInWeek).
+  turn_Month_into_a_list_of_assignments(Current_Week,Day_Schedules_Of_Week),		
+  employees_hours_in_assignments(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek).	
 
 employees_hours_in_assignments(Current_Employee,Day_Schedules_Of_Week,HoursWorkedInWeek) :-
   (
@@ -309,22 +285,6 @@ employees_hours_in_assignments(Current_Employee,Day_Schedules_Of_Week,HoursWorke
   ground(Durations) -> sumlist(Durations,HoursWorkedInWeek) ;
                        HoursWorkedInWeek is 0.
 
-%  (
-%    foreach(Day_Schedule,Day_Schedules_Of_Week), 
-%    fromto([],In,Out,Durations), % what if someone works none in the week? Maybe initialize with [0]
-%    param(Current_Employee)
-%    do
-%      Day_Schedule = assignment{employee:Scheduled_Employee, sstart:Start, send:End},
-%      (
-%        Scheduled_Employee =:= Current_Employee ->
-%          Duration is End-Start,
-%          Out=[Duration | In]
-%        ;
-%          Out=In
-%      )
-%%  ),
-%  sumlist(Durations,HoursWorkedInWeek).
-  
 formatTime(MilitaryHour,HourString,DayPart) :-
   (MilitaryHour > 12
    ->
@@ -867,11 +827,6 @@ score_employees(Assignments,[H | Tail],Accumulator,Employees_With_Scores) :-
   Accumulator_New = [(H,HoursWorkedInWeek) | Accumulator],
   score_employees(Assignments,Tail,Accumulator_New,Employees_With_Scores).
 
-%score_employees([],_Scored_Employees).
-%score_employees([H|T],Scored_Employees) :-
-%  writeln([(H,4)| Scored_Employees] ),
-%  score_employees( T, [(H,4)| Scored_Employees] ).
-  
 var_choice(_Assignment,Criterion) :-
   Criterion is 1.
 
@@ -890,12 +845,6 @@ val_choice(Assignment,(Assignments-[]),Out) :-
 		do
       Out = [Emp|In]
    ),
-	%writeln(flatsorted:SortedEmployeeList),
-	%pause,
-  %employees_hours_in_assignments(1,Assignments,HoursWorkedInWeek),
-  %employee_Hours_In_Week(1,Month,H),
-	%writeln(HoursWorkedInWeek),
-% In this pre-alpha implementation we are just naively setting out to the list of Employees	
   grind(SortedEmployeeList,Assignment,OutEmployees),
   Out = (Assignments-OutEmployees).
 
