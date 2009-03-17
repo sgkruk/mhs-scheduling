@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/(.*)', admin.site.root),
+    (r'admin/(.*)', admin.site.root),
     (r'scheduling/$', 'mhsweb.scheduling.views.index'),
     (r'scheduling/new', 'mhsweb.scheduling.views.new'),
     (r'scheduling/run', 'mhsweb.scheduling.views.run'),

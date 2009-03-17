@@ -817,9 +817,6 @@ turn_Month_into_a_list_of_assignments(Month,Assignments) :-
    ),
   flatten(As,Assignments).
 
-peel([H|T], H, T).
-peel([_|T],E,Outlist) :-  peel(T,E,Outlist).
-
 score_employees(Assignments,Employees,Employees_With_Scores):-
   score_employees(Assignments,Employees,[],Employees_With_Scores).
 	
@@ -852,7 +849,7 @@ val_choice(Assignment,(Assignments-[]),Out) :-
 	score_employees(Assignments,EmployeeList,ScoredEmployeeList),
 	%writeln(scored:ScoredEmployeeList),
 	sort(2,>=,ScoredEmployeeList,SortedScoredEmployeeList),
-	%writeln(sorted:SortedScoredEmployeeList),
+	writeln(sorted:SortedScoredEmployeeList),
   (foreach((Emp,_),SortedScoredEmployeeList),fromto([],In,Out,SortedEmployeeList) 
 		do
       Out = [Emp|In]
@@ -866,14 +863,22 @@ val_choice(Assignment,(Assignments-[]),Out) :-
 % the vector V as the employee to try and Out is the tail of V
 % The structure of V could be [(Emp,Start,End)*]
 val_choice(Assignment,(Month-L),Out) :-
+  length(L,Len),Len>0,
   grind(L,Assignment,VOut),
   Out = (Month-VOut).
 
 grind(List,Assignment,Out) :-
   Assignment = assignment{employee:Employee, sstart:Start, send: End},
+  writeln('before'-Assignment-List),
+  
   (ground(Employee) -> true ; peel(List,Employee,Out)),
+  writeln('after'-Assignment-Out),
   (ground(End) -> indomain(Start,max) ; indomain(Start,min)),
   indomain(End).
+
+
+peel([H|T], H, T).
+peel([_|T],E,Outlist) :-  peel(T,E,Outlist).
 
 schedule(Month) :-
   construct(Month),
