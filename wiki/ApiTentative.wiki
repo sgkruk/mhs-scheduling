@@ -1,0 +1,14 @@
+#summary Abstract api.
+
+= Introduction =
+
+Trying to abstract what are the necessary calls to model all the scheduling situations we have in mind.  The idea is not to be tied down to a particular language but rather to develop an abstract language to model scheduling problems.  
+
+The second step will be to try various implementations of these calls.
+
+
+= Details =
+
+At first glance we have two types, _requests_ and _resources_.  A _request_ is a set of constraints relating resources attributes and time intervals.  A resource is an element with a specific set of attributes and time availabilities.
+
+For example, a request is "Need 3 managers Monday from 9 to 12".  A resource is "Paul Edouard, Manager, 10 years seniority, available M-F 0900h-1600h".
