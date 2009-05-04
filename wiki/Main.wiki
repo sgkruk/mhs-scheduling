@@ -6,5 +6,5 @@ Main direction to all ofher pages
 
 
 = Details =
-PostMortemOrAssessment : What we learned so far
-ApiTentative : Where we are going
+  * PostMortemOrReAssessment : What we learned so far
+  * ApiTentative : Where we are going
