@@ -45,18 +45,19 @@ We need also to state requests that affect sets of resources:
 
 The idea here is to abstract the above into a small problem specific language.
 
-Request: Count Comparator ResourceDescriptor EventType TimeDescriptor
-ResourceDescriptor : Resource.Attribute (e.g. employee.interns ; database dependent)
-EventType : 'atWork' | 'onCall' ... (database dependent?)
-Conparator : AtMost | AtLeast, | Exactly (?)
-TimeDescriptor : CalendarSpecific | CalendarRepeatable | SlidingWindow | xOutOfy
+Roughly in BNF...
+
+  * Request: Count Comparator ResourceDescriptor EventType TimeDescriptor
+  * ResourceDescriptor : Resource.Attribute (e.g. employee.interns ; database dependent)
+  * EventType : 'atWork' | 'onCall' ... (database dependent?)
+  * Comparator : AtMost | AtLeast, | Exactly (?)
+  * TimeDescriptor : CalendarSpecific | CalendarRepeatable | SlidingWindow | xOutOfy
 
 CalendarSpecific is a given interval, e.g. Monday June 14th 0900-1600h
 
 CalendarRepeatable is a time interval that repeats e.g. Monday or First of the month
 
 SlidingWindow is for 20 consecutive hours or 3 consecutive days
+
 xOutOfy is to allow stuff like 2 days out of 5
-
-
 
