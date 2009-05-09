@@ -36,7 +36,7 @@ We need also to state requests that affect sets of resources:
   * All employees are working at most 20 consecutive hours
     * The time interval descriptor has a different structure
   * Interns are not available for work Friday afternoon
-    * 'Inters' are resources
+    * 'Interns' are resources
     * 'not available' is dangerous.  Should we insist (or translate) all requests into a positive form.  'Interns are available Monday-Thursday all day and Friday Morning'.
 
 (We should add to this list all statements we intend to support).
@@ -60,4 +60,3 @@ CalendarRepeatable is a time interval that repeats e.g. Monday or First of the m
 SlidingWindow is for 20 consecutive hours or 3 consecutive days
 
 xOutOfy is to allow stuff like 2 days out of 5
-
