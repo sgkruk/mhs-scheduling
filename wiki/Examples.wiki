@@ -7,5 +7,8 @@ We will here describe, in detail, three structurally different scheduling proble
 
 = Details =
 
-  * VictoriaSecret
+  * VictoriaSecretScheduling
   * MachineScheduling
+  * MHSScheduling
+  * DMSScheduling
+  * CSSScheduling 
