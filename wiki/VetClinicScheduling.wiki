@@ -1,0 +1,112 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Example: Vet Clinic Scheduling
+
+E := A Set of Employees
+E := { E1, E2, E3, …, En }
+
+T := A Set of ordered hour-sets. One for each of a month's worth of calendar work days
+T := { T1, T2, T3, …, Tn } where any Ti is { h1, h2, h3, …, hm }
+Each T1 represents the hours the clinic is open each day. 
+Cardinality of Ti not necessarily equal to cardinality of Tj for any i,j.
+
+Constraints are set up and entered this way:
+
+F < T is a subset of T which is days on which at least 5 employees must be scheduled
+S < T is a subset of T which is days on which at least 4 employees must be scheduled
+At all days in T, no more than 6 employees can be scheduled
+
+These constraints are entered into the API this way:
+
+constraint(E,T,MaxResources(6)); //Means all d in T associate with no more than 6 e in E.
+constraint(F,T,MinResources(5));
+constraint(S,T,MinResources(4));
+
+K < E is a subset of employees that have keys
+L < E is a subset of employees that have licenses
+Starts < T is the extracted subset of initial hours: { T1h1, T2h1, T3h1, …., Tnhm }
+Ends < T is the extracted subset of final hours: { T1h1, T2h1, T3h1, …., Tnhm }
+Each scheduled day must have a keyed employee and a licensed employee (not necessarily the same person on the first and last hour. Also, there must be two scheduled employees at the first and last hour.
+
+constraint(E,Starts,MinResources(2));
+constraint(E,Ends,MinResources(2));
+constraint(K,Starts,MinResources(1));
+constraint(K,Ends,MinResources(1));
+constraint(L,Starts,MinResources(1));
+constraint(L,Ends,MinResources(1));
+
+Ordered subsets of T represent weeks, there are five of them.
+
+W1 < T
+W2 < T
+.
+.
+.
+W5 < T
+
+There are full- and part-time employees. They each have maximum and minimum number of hours (assignments) to be made.
+
+PTE < E is the set of part-time employees
+FTE < F is the set of full-time employees
+
+constraint(PTE,W1,MaxTimes(35)); //Each e of PTE associates with no more than 35 time units (hours) in week W1)
+constraint(PTE,W2,MaxTimes(35)); 
+…
+constraint(PTE,W5,MaxTimes(35)); 
+
+constraint(PTE,W1,MinTimes(20)); //Each e of PTE associates with no less than 20 time units (hours) in week W1)
+constraint(PTE,W2,MinTimes(20)); 
+…
+constraint(PTE,W5,MinTimes(20)); 
+
+constraint(FTE,W1,MaxTimes(45)); //Each e of FTE associates with no more than 45 time units (hours) in week W1)
+constraint(FTE,W2,MaxTimes(45)); 
+…
+constraint(FTE,W5,MaxTimes(45)); 
+
+constraint(FTE,W1,MinTimes(35)); //Each e of FTE associates with no less than 35 time units (hours) in week W1)
+constraint(FTE,W2,MinTimes(35)); 
+…
+constraint(FTE,W5,MinTimes(35)); 
+
+Employees have at least two contiguous days off for any week that they are assigned
+
+constraint(E,W1,UnassignedContiguous(2)); 
+constraint(E,W2,UnassignedContiguous(2)); 
+…
+constraint(E,W5,UnassignedContiguous(2)); 
+
+Some employees for the month have vacation or paid-time-off representing days (Ti of T) they cannot be scheduled or hours (h of Ti) for which they cannot be scheduled.
+
+E1 < E
+VacationWeek < T
+constraint(E1,VacationWeek,NOT); //E1 has no assignments to VacationWeek < T.
+
+E3 < E
+Errand < T3 < T
+constraint(E3,Errand,NOT); //E3 has no assignments to hours of set Errand, a subset of T3 which is a day element in T,
+
+The API when implemented the sets E and T as nodes of a bipartite graph (E,T). For T, a set of sets, the smallest elements (“hours”) in this make up the T-side of the bipartite graph. The program execution attempts to produce a schedule by connecting nodes between E and T according to rules set up by the constraints
+constraint(A,B,MaxResources(n)); //Means no more than n nodes in A are adjacent to node-set B. This is an upper bound on the degree to node-set B.
+constraint(A,B,MinResources(n)); //Means at least n nodes in A are adjacent to node-set B.
+  Here each B represents a grouping of nodes on the time-side T (in our case groups of “hours” representing a “day”)
+
+constraint(A,B,MaxTimes(n)); //Means no more than n nodes in A are adjacent to node-set B.
+similarly with MinTimes(n). This is an upper bound on the degree of the vertices in B.
+  Here each B represents a individual nodes on the time-side T (in our case atoms of “hours” of the  hour-groups called a “day”)
+Question: Can  MaxResources and  MaxTimes be implemented and enforced under an identical API call?
+
+constraint(A,B,UnassignedContiguous(n)); Means that in node-set B, for each a in A there exists some b_i in B such that a is not adjacent to the ordered vertex set {b_i,...,b_(i+n)}
+
+constraint(A,B,NOT); Means that no vertex in A is adjacent to any vertex in B
+
+Additionally, an objective function is defined on node degrees, edge count, etc. that can be maximized or minimized to optimize the schedule. 
+
+The final produced schedule is an optimized bipartite graph on an allowed edge set. 
