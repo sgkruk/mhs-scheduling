@@ -9,7 +9,7 @@ Add your content here.
 Example: Vet Clinic Scheduling
 
 E := A Set of Employees
-E := { E_1, E_2, E_3, …, E_n }
+E := { E,,1,,, E_2, E_3, …, E_n }
 
 T := A Set of ordered time units. In our case, this represents the entire month's worth of calendar work days' hours in an uninterrupted, ordered list.
 T := { h_1, h_2, h_3, …, h_m }
