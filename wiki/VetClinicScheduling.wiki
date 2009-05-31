@@ -9,14 +9,19 @@ Add your content here.
 Example: Vet Clinic Scheduling
 
 E := A Set of Employees
-E := { E,,1,,, E_2, E_3, …, E_n }
+E := { E,,1,,, E,,2,,, E,,3,,, …, E,,n,, }
 
 T := A Set of ordered time units. In our case, this represents the entire month's worth of calendar work days' hours in an uninterrupted, ordered list.
-T := { h_1, h_2, h_3, …, h_m }
-Each h_i represents the hours the clinic is open each day. 
-Cardinality of Ti not necessarily equal to cardinality of Tj for any i,j.
+T := { h,,1,,, h,,2,,, h,,3,,, …, h,,m,, }
+Each h,,i,, represents the hours the clinic is open each day. 
+Cardinality of E not necessarily equal to cardinality of T.
 
-Constraints are set up and entered this way:
+The fundamental sets E, T can give rise to any number of required subsets for defining constraints and the eventual objective functions. Initially, when considering calendars or other natural time grouping and T as the set of smallest time atoms of the system, it will be natural to partition _T_ into natural subsets. For us:
+
+_D_,,i,, := { _h_ in _T_ | _h_ belongs to the _i_th day of the month }
+_W_,,i,, := { _D_ in { _D_,,1,,, _D_,,2,,, .... _D_,,j,, } | _D_,,i,, belongs to the _i_th week of the month }
+
+Some Initial Example Constraints:
 
 F < T is a subset of T which is days on which at least 5 employees must be scheduled
 S < T is a subset of T which is days on which at least 4 employees must be scheduled
@@ -30,7 +35,7 @@ constraint(S,T,MinResources(4));
 
 K < E is a subset of employees that have keys
 L < E is a subset of employees that have licenses
-Starts < T is the extracted subset of initial hours: { T1h1, T2h1, T3h1, …., Tnhm }
+Starts < T is the extracted subset of initial hours: { h1, T2h1, T3h1, …., Tnhm }
 Ends < T is the extracted subset of final hours: { T1h1, T2h1, T3h1, …., Tnhm }
 Each scheduled day must have a keyed employee and a licensed employee (not necessarily the same person on the first and last hour. Also, there must be two scheduled employees at the first and last hour.
 
