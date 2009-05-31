@@ -4,17 +4,16 @@
 
 Add your content here.
 
-
 = Details =
 
 Example: Vet Clinic Scheduling
 
 E := A Set of Employees
-E := { E1, E2, E3, …, En }
+E := { E_1, E_2, E_3, …, E_n }
 
-T := A Set of ordered hour-sets. One for each of a month's worth of calendar work days
-T := { T1, T2, T3, …, Tn } where any Ti is { h1, h2, h3, …, hm }
-Each T1 represents the hours the clinic is open each day. 
+T := A Set of ordered time units. In our case, this represents the entire month's worth of calendar work days' hours in an uninterrupted, ordered list.
+T := { h_1, h_2, h_3, …, h_m }
+Each h_i represents the hours the clinic is open each day. 
 Cardinality of Ti not necessarily equal to cardinality of Tj for any i,j.
 
 Constraints are set up and entered this way:
