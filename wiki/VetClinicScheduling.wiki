@@ -8,8 +8,8 @@ Add your content here.
 
 Example: Vet Clinic Scheduling
 
-E := A Set of Employees
-E := { E,,1,,, E,,2,,, E,,3,,, …, E,,n,, }
+*E* := A Set of Employees
+*E* := { e,,1,,, e,,2,,, e,,3,,, …, e,,n,, }
 
 T := A Set of ordered time units. In our case, this represents the entire month's worth of calendar work days' hours in an uninterrupted, ordered list.
 T := { h,,1,,, h,,2,,, h,,3,,, …, h,,m,, }
