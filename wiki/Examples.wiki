@@ -10,5 +10,5 @@ We will here describe, in detail, three structurally different scheduling proble
   * VictoriaSecretScheduling
   * VetClinicScheduling
   * MachineScheduling
-  * DMSScheduling
-  * CSSScheduling 
+  * [DMSScheduling]
+  * [CSSScheduling] 
