@@ -103,9 +103,9 @@ constraint(e,,3,,,_Errand_,Max(0)); //Employee e,,3,, has no assignments to hour
 The API when implemented the sets _E_ and _T_ as nodes of a bipartite graph (_E_,_T_). The program execution attempts to produce a schedule by connecting nodes between _E_ and _T_ according to rules set up by the constraints
 constraint(_A_,_B_,Max(n)); //Means no more than n nodes in A are adjacent to node-set B. This is an upper bound on the degree to node-set B.
 constraint(A,B,Min(n)); //Means at least n nodes in A are adjacent to node-set B.
-  Here each B represents a grouping of nodes on the time-side T (in our case groups of “hours” representing a “day”)
+  Here each B represents a grouping of nodes on the time-side T (in our case groups of “hours” representing a "day")
 
-constraint(A,B,Contiguous(n)); Means that in node-set B, for each a in A there exists some b_i in B such that a is adjacent to the ordered vertex set {b_i,...,b_(i+n)}
+constraint(A,B,Contiguous(n)); Means that in node-set B, for each a in A there exists some b,,i in B such that a is adjacent to the ordered vertex set {b,,i,...,b,,i+n}
 
 Additionally, an objective function is defined on node degrees, edge count, etc. that can be maximized or minimized to optimize the schedule. 
 
