@@ -105,8 +105,6 @@ constraint(_A_,_B_,Max(n)); //Means no more than n nodes in A are adjacent to no
 constraint(A,B,Min(n)); //Means at least n nodes in A are adjacent to node-set B.
   Here each B represents a grouping of nodes on the time-side T (in our case groups of “hours” representing a "day")
 
-constraint(A,B,Contiguous(n)); Means that in node-set B, for each a in A there exists some b,,i in B such that a is adjacent to the ordered vertex set {b,,i,...,b,,i+n}, In practical application, this 'contiguous' constraint it is not satisfiable since time-off constraints that must be satisfied make the contiguous constraint impossible to meet. Instead, distance to universal contiguousness is minimized as part of the objective function. Since the Contiguous constraint is relaxed in this fashion, it is not expected that a Contiguous constraint will be implemented in the API.
-
-Additionally, an objective function is defined on node degrees, edge count, etc. that can be maximized or minimized to optimize the schedule. 
+constraint(A,B,Contiguous(n)); Means that in node-set B, for each a in A there exists some b,,i in B such that a is adjacent to the ordered vertex set {b,,i,...,b,,i+n}, In practical application, this 'contiguous' constraint it is not satisfiable since time-off constraints that must be satisfied make the contiguous constraint impossible to meet. Instead, distance to universal contiguousness is minimized as part of the objective function. Since the Contiguous constraint is relaxed in this fashion, it is not expected that a Contiguous constraint will be implemented in the API. The objective function is defined on node degrees, edge count, etc. that can be maximized or minimized to optimize the schedule. 
 
 The final produced schedule is an optimized bipartite graph on an allowed edge set. 
