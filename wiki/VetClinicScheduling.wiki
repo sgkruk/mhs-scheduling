@@ -1,8 +1,8 @@
-#summary One-sentence summary of this page.
+#summary Example of Vet assistant rostering.
 
 = Introduction =
 
-Add your content here.
+This is a real-world example drawn from the Michigan Humane Society.
 
 = Details =
 
