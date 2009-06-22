@@ -55,5 +55,5 @@ getResourceConstraints(RC) :-
            resource(all of employees, =<, 40, hours of timeslots),
            resource(all of employees, >=, 24, hours of timeslots),
            resource(fred of employees, = , 0, tuesday of timeslots),
-           resource(mary of employees, >= , 6, thursday of timeslots)
+           resource(mary of employees, >= , 4, thursday of timeslots)
        ].
