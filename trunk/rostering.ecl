@@ -1,4 +1,3 @@
-:-use_module(structures).
 :-lib(ic).
 :-lib(ic_global).
 
