@@ -1,5 +1,5 @@
 TRIAL1:
-		eclipse -b roster1.ecl -e 'getTimes(T),writeln(T).'
+		eclipse -b roster1.ecl -b rostering -e roster.
 TRIAL0:
 		eclipse -b roster0.ecl -b rostering.ecl -e roster.
 

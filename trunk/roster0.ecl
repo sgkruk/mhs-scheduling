@@ -3,8 +3,11 @@
 % This version only implements one level of timeslots and only 
 % sum inequalities (no regex, no contiguous)
 % 
-:-local struct(employees(all,managers,seniors,juniors,fred,mary)).
-:-local struct(timeslots(hours,monday,tuesday,wednesday,thursday,friday,days)).
+:- local struct(employees(all,managers,seniors,juniors,fred,mary)).
+:- local struct(level1(all,monday,tuesday,wednesday,thursday,friday)).
+:- local struct(timeslots(hourlevel:level1)).
+
+% The above structures must have a first field called 'all'
 
 getEmployees(E) :-
   E = employees{all:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
@@ -15,7 +18,7 @@ getEmployees(E) :-
                 mary:[14]}.
 
 getTimes(T) :-
-  T = timeslots{hours:[1,2,3,4,5,6,7,8,9,10,11,12,
+  T = timeslots{all:[1,2,3,4,5,6,7,8,9,10,11,12,
                        13,14,15,16,17,18,19,20,21,22,23,24,
                        25,26,27,28,29,30,31,32,33,34,35,36,
                        37,38,39,40,41,42,43,44,45,46,47,48,
@@ -52,8 +55,8 @@ getCoverConstraints(CC) :-
 
 getResourceConstraints(RC) :-
   RC = [
-           resource(all of employees, =<, 40, hours of timeslots),
-           resource(all of employees, >=, 24, hours of timeslots),
+           resource(all of employees, =<, 40, all of timeslots),
+           resource(all of employees, >=, 24, all of timeslots),
            resource(fred of employees, = , 0, tuesday of timeslots),
            resource(mary of employees, >= , 4, thursday of timeslots)
        ].
