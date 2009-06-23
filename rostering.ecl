@@ -3,23 +3,28 @@
 
 roster :-
   getEmployees(E),
-  validateEmployees(E,NbE),
   getTimes(T),
-  validateTimes(T,NbT),
-  setup(Roster,[NbE,NbT]),
+  setup(Roster,E,T,NbE,Layers),writeln([NbE,Layers]),
   getCoverConstraints(CC),
   coverConstrain(CC,Roster,E,T),
   getResourceConstraints(RC),
   resourceConstrain(RC,Roster,E,T),
   flatten_array(Roster,R),
-  labeling(R),
-  displaySolution(NbE,NbT,Roster).
+  labeling(R),!,
+  displaySolution(Roster).
 
-displaySolution(NbE,NbT,Roster):-
-  (for(E,1,NbE), param(NbT,Roster) do
-      (for(T,1,NbT), param(E,Roster) do
-          subscript(Roster,[E,T],YN),
-          (YN=1 -> write('Y') ; write('_'))
+displaySolution(Roster):-
+  dim(Roster,[NbE,NbLayers,_]),!,
+  writeln(aaaa-[NbE,NbLayers]),
+  (for(L,1,NbLayers), param(NbE,Roster) do
+      (for(E,1,NbE), param(L,Roster) do
+          subscript(Roster,[E,L],Times),
+          arity(Times,NbT),
+          (for(T,1,NbT), param(E,L,Roster) do
+              subscript(Roster,[E,L,T],YN),
+              (YN=1 -> write('Y') ; write('_'))
+          ),
+          writeln(' ')
       ),
       writeln(' ')
   ).
@@ -30,9 +35,11 @@ resourceConstrain(RC,Roster,E,T) :-
       writeln(Resource),
       arg(EmployeesField, E, EmployeeSet),
       arg(TimeslotsField, T, TimeslotSet),
-      (foreach(Employee,EmployeeSet), param(Rel,N,TimeslotSet,Roster) do
-          (foreach(Timeslot, TimeslotSet), foreach(Elem,AllElem), param(Employee,Roster) do
-              subscript(Roster,[Employee,Timeslot],Elem)
+      arg(1,TimeslotsField,Layer),
+      (foreach(Employee,EmployeeSet), param(Rel,N,TimeslotSet,Roster,Layer) do
+          (foreach(Timeslot, TimeslotSet), 
+           foreach(Elem,AllElem), param(Employee,Roster,Layer) do
+              subscript(Roster,[Employee,Layer,Timeslot],Elem)
           ),
           (Rel='>' -> #>(sumlist(AllElem),  N); true),
           (Rel='>=' -> #>=(sumlist(AllElem),  N); true),
@@ -49,9 +56,11 @@ coverConstrain(CC,Roster,E,T) :-
       writeln(Cover),
       arg(EmployeesField, E, EmployeeSet),
       arg(TimeslotsField, T, TimeslotSet),
-      (foreach(Timeslot, TimeslotSet), param(Rel,N,EmployeeSet,Roster) do
-          (foreach(Employee,EmployeeSet), foreach(Elem,AllElem), param(Timeslot,Roster) do
-              subscript(Roster,[Employee,Timeslot],Elem)
+      arg(1,TimeslotsField,Layer),
+      (foreach(Timeslot, TimeslotSet), param(Rel,N,EmployeeSet,Roster,Layer) do
+          (foreach(Employee,EmployeeSet), 
+           foreach(Elem,AllElem), param(Timeslot,Roster,Layer) do
+              subscript(Roster,[Employee,Layer,Timeslot],Elem)
           ),
           (Rel='>' -> #>(sumlist(AllElem),  N); true),
           (Rel='>=' -> #>=(sumlist(AllElem),  N); true),
@@ -60,28 +69,13 @@ coverConstrain(CC,Roster,E,T) :-
           (Rel='<' -> #<(sumlist(AllElem),  N); true)
       )
   ).
-setup(Roster,[NbE,NbT]) :-
-  dim(Roster,[NbE,NbT]),
+setup(Roster,E,T,NbE,Layers) :-
+  arg(1,E,AllE),length(AllE,NbE),
+  arity(T,NbLayers),
+  arg(1,T,Level1),arg(1,Level1,AllT),length(AllT,NbT),
+  dim(Roster,[NbE,NbLayers,NbT]),
+  writeln([NbE,NbLayers,NbT]),
   Roster::[0..1].
-  
-validateTimes(Times,NbT) :-
-  arg(hours of timeslots, Times, Hours), 
-  length(Hours,NbT),
-  (NbT>0 -> true; writeln('Error on timeslots'),fail).
-  
 
-validateEmployees(E,NbE) :-
-  arg(all of employees, E, All),
-  length(All,NbE),
-  arg(managers of employees, E, Managers),
-  arg(juniors of employees, E, Juniors),
-  arg(seniors of employees, E, Seniors),
-  flatten([Managers, Seniors, Juniors], Combine),
-  sort(All,AllSorted),
-  sort(Combine,CombineSorted),
-  (foreach(X,AllSorted),
-   foreach(Y,CombineSorted) do
-      (X =\= Y -> writeln('Error on all'),fail ; true)
-  ).
 
   
