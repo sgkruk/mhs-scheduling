@@ -4,22 +4,19 @@
 roster :-
   getEmployees(E),
   getTimes(T),
-  setup(Roster,E,T,NbE,Layers),writeln([NbE,Layers]),
+  setup(Roster,E,T,NbE,Layers),
   getCoverConstraints(CC),
   coverConstrain(CC,Roster,E,T),
   getResourceConstraints(RC),
   resourceConstrain(RC,Roster,E,T),
   flatten_array(Roster,R),
   labeling(R),!,
-  displaySolution(Roster).
+  displaySolution(Roster,NbE,Layers).
 
-displaySolution(Roster):-
-  dim(Roster,[NbE,NbLayers,_]),!,
-  writeln(aaaa-[NbE,NbLayers]),
-  (for(L,1,NbLayers), param(NbE,Roster) do
-      (for(E,1,NbE), param(L,Roster) do
-          subscript(Roster,[E,L],Times),
-          arity(Times,NbT),
+displaySolution(Roster,NbE,Layers):-
+  length(Layers,NbLayers),
+  (for(L,1,NbLayers), foreach(NbT,Layers), param(NbE,Roster) do
+      (for(E,1,NbE), param(L,Roster,NbT) do
           (for(T,1,NbT), param(E,L,Roster) do
               subscript(Roster,[E,L,T],YN),
               (YN=1 -> write('Y') ; write('_'))
@@ -72,18 +69,13 @@ coverConstrain(CC,Roster,E,T) :-
 setup(Roster,E,T,NbE,Layers) :-
   arg(1,E,AllE),length(AllE,NbE),
   arity(T,NbLayers),
-  (for(L,1,NbLayers),foreach(LSize,Layers), foreach(R,RR), param(T,NbE) do
+  (for(L,1,NbLayers),foreach(LSize,Layers), param(T) do
       arg(L,T,Layer),arg(1,Layer,All),
-      length(All,LSize),
-      dim(R,[NbE,LSize]),
-      R::0..1
+      length(All,LSize)
   ),
-  Roster=[](RR),writeln(allo),
-  dim(Roster,[D0,D1,D2]),writeln([D0,D1,D2]).
-%  arg(1,T,Level1),arg(1,Level1,AllT),length(AllT,NbT),
-%  dim(Roster,[NbE,NbLayers,NbT]),
-%  writeln([NbE,NbLayers,NbT]),
-%  Roster::[0..1].
+  arg(1,T,Level1),arg(1,Level1,AllT),length(AllT,NbT),
+  dim(Roster,[NbE,NbLayers,NbT]),
+  Roster::[0..1].
 
 
   
