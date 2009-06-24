@@ -1,3 +1,5 @@
+TRIAL2:
+		eclipse -b roster2.ecl -b rostering -e roster.
 TRIAL1:
 		eclipse -b roster1.ecl -b rostering -e roster.
 TRIAL0:
