@@ -5,9 +5,12 @@ roster :-
   getEmployees(E),
   getTimes(T),
   setup(Roster,E,T,NbE,Layers),
+  writeln('Inter-Layer constraints'),
   interLayerConstrain(NbE,Roster,T,Layers),
+  writeln('Cover constraints'),
   getCoverConstraints(CC),
   coverConstrain(CC,Roster,E,T),
+  writeln('Resource constraints'),
   getResourceConstraints(RC),
   resourceConstrain(RC,Roster,E,T),
   flatten_array(Roster,R),
@@ -42,13 +45,16 @@ interLayerConstrain(NbE,Roster, T, Layers):-
   EndLayer is NbLayers-1,
   (for(E,1,NbE), param(Roster,T,Layers,NbLayers,EndLayer) do
       (for(L1,1,EndLayer), for(L2,2,NbLayers), param(E,Roster,T) do
+          %writeln(L1-L2),
           arg(L1,T,T1),arg(L2,T,T2),
           arg(1,T2,T2Indices),
           (foreach(T2Index,T2Indices), param(Roster,E,L1,L2,T1) do
               arg(T2Index,T1,T1Indices),
-              writeln(T2Index-T1Indices),
-              writeln([E,L1,T1Indices]),
-              (foreach(T1Index,T1Indices), foreach(R1Var,R1Vars), param(E,L1,Roster) do
+              %writeln(T2Index-T1Indices),
+              %writeln([E,L1,T1Indices]),
+              (foreach(T1Index,T1Indices), foreach(R1Var,R1Vars),
+               param(E,L1,Roster) do
+                  %writeln([E,L1,T1Index]),
                   subscript(Roster,[E,L1,T1Index],R1Var)
               ),
               subscript(Roster,[E,L2,T2Index],R2Var),
@@ -87,7 +93,7 @@ coverConstrain(CC,Roster,E,T) :-
       Cover=cover(TimeslotsField,Rel,N,EmployeesField),
       writeln(Cover),
       arg(EmployeesField, E, EmployeeSet),
-      arg(TimeslotsField, T, TimeslotSet),writeln(TimeslotSet),
+      arg(TimeslotsField, T, TimeslotSet),
       arg(1,TimeslotsField,Layer),
       (foreach(Timeslot, TimeslotSet), param(Rel,N,EmployeeSet,Roster,Layer) do
           (foreach(Employee,EmployeeSet), 
