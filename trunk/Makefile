@@ -1,3 +1,5 @@
+TRIALMHS:
+		eclipse -b roster-mhs.ecl -b rostering -e roster.
 TRIAL2:
 		eclipse -b roster2.ecl -b rostering -e roster.
 TRIAL1:
